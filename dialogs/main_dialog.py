@@ -1,12 +1,12 @@
 from typing import Any
 
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import CallbackQuery
 from aiogram_dialog import Window, Dialog, DialogManager, Data
-from aiogram_dialog.widgets.kbd import Row, Button, Start, Cancel
+from aiogram_dialog.widgets.kbd import Row, Start
 from aiogram_dialog.widgets.text import Const
 
 from dialogs.program_dialog import ProgramMenu
+from dialogs.trauma_point_dialog import TraumaPointRegister
 
 
 class MainMenu(StatesGroup):
@@ -21,13 +21,12 @@ async def main_process_result(start_data: Data, result: Any,
 main_dialog = Dialog(
     Window(
         Const("Я бот ЕОФ2025. Выберите пункт меню."),
-
         Row(
             Start(Const("Программа форума"), id="program", state=ProgramMenu.main_menu),
         ),
         Row(
             Start(Const("Trauma-POINT бот для профессиональных знакомств"), id="trauma_point",
-                  state=ProgramMenu.main_menu),
+                  state=TraumaPointRegister.main_menu),
         ),
         Start(Const("Участие в розыгрыше"), id="raffle", state=ProgramMenu.main_menu),
         Start(Const("Квест по выставке"), id="quest", state=ProgramMenu.main_menu),
