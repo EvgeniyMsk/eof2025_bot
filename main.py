@@ -18,10 +18,6 @@ dp.include_router(pg_dialog.program_dialog)
 dp.include_router(trp_dialog.main_dialog)
 
 
-# dp.include_router(program_20_06_dialog)
-# dp.include_router(program_21_06_dialog)
-
-
 setup_dialogs(dp)
 
 if __name__ == '__main__':

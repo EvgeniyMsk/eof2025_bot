@@ -4,7 +4,7 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram_dialog import Window, Dialog, DialogManager, Data, ChatEvent
 from aiogram_dialog.widgets.common import Whenable
 from aiogram_dialog.widgets.input import TextInput
-from aiogram_dialog.widgets.kbd import Row, Start, ManagedCheckbox, Next, Checkbox, Button, Cancel
+from aiogram_dialog.widgets.kbd import Row, Start, ManagedCheckbox, Next, Checkbox, Button, Cancel, Back
 from aiogram_dialog.widgets.text import Const, Jinja
 
 
@@ -27,6 +27,7 @@ async def main_process_result(start_data: Data, result: Any,
                               dialog_manager: DialogManager):
     print("We have result:", result)
 
+
 async def get_lastname(dialog_manager: DialogManager, **kwargs):
     return {
         "lastname": dialog_manager.find("lastname").get_value(),
@@ -43,6 +44,20 @@ async def get_lastname(dialog_manager: DialogManager, **kwargs):
         "check_8": dialog_manager.find("check_8").is_checked(),
         "check_9": dialog_manager.find("check_9").is_checked(),
     }
+
+
+professional_interests = [
+    'Вальгусная деформация стопы',
+    'Безоперационное лечение суставов',
+    'Эндопротезирование суставов',
+    'Артроскопия',
+    'Спортивные травмы',
+    'Кистевая терапия',
+    'Реабилитация после травм или заболевания опорно-двигательного аппарата',
+    'Военно-полевая хирургия',
+    'Реабилитация'
+]
+
 
 main_dialog = Dialog(
     Window(
@@ -79,15 +94,15 @@ main_dialog = Dialog(
         Const(f'Выберите Вашу сферу профессиональных интересов'),
         Row(
             Checkbox(
-                Const("✓  Вальгусная деформация стопы"),
-                Const("Вальгусная деформация стопы"),
+                Const(f'✓  {professional_interests[0]}'),
+                Const(f'{professional_interests[0]}'),
                 id="check_1",
                 default=False,
                 on_state_changed=check_changed,
             ),
             Checkbox(
-                Const("✓  Безоперационное лечение суставов"),
-                Const("Безоперационное лечение суставов"),
+                Const(f'✓  {professional_interests[1]}'),
+                Const(f'{professional_interests[1]}'),
                 id="check_2",
                 default=False,
                 on_state_changed=check_changed,
@@ -95,38 +110,38 @@ main_dialog = Dialog(
         ),
         Row(
             Checkbox(
-                Const("✓  Эндопротезирование суставов"),
-                Const("Эндопротезирование суставов"),
+                Const(f'✓  {professional_interests[2]}'),
+                Const(f'{professional_interests[2]}'),
                 id="check_3",
                 default=False,
                 on_state_changed=check_changed,
             ),
             Checkbox(
-                Const("✓  Артроскопия"),
-                Const("Артроскопия"),
+                Const(f'✓  {professional_interests[3]}'),
+                Const(f'{professional_interests[3]}'),
                 id="check_4",
                 default=False,
                 on_state_changed=check_changed,
-            ),),
+            ), ),
         Row(
             Checkbox(
-                Const("✓  Спортивные травмы"),
-                Const("Спортивные травмы"),
+                Const(f'✓  {professional_interests[4]}'),
+                Const(f'{professional_interests[4]}'),
                 id="check_5",
                 default=False,
                 on_state_changed=check_changed,
             ),
             Checkbox(
-                Const("✓  Кистевая терапия"),
-                Const("Кистевая терапия"),
+                Const(f'✓  {professional_interests[5]}'),
+                Const(f'{professional_interests[5]}'),
                 id="check_6",
                 default=False,
                 on_state_changed=check_changed,
-            ),),
+            ), ),
         Row(
             Checkbox(
-                Const("✓  Реабилитация после травм или заболевания опорно-двигательного аппарата"),
-                Const("Реабилитация после травм или заболевания опорно-двигательного аппарата"),
+                Const(f'✓  {professional_interests[6]}'),
+                Const(f'{professional_interests[6]}'),
                 id="check_7",
                 default=False,
                 on_state_changed=check_changed,
@@ -134,15 +149,15 @@ main_dialog = Dialog(
         ),
         Row(
             Checkbox(
-                Const("✓  Военно-полевая хирургия"),
-                Const("Военно-полевая хирургия"),
+                Const(f'✓  {professional_interests[7]}'),
+                Const(f'{professional_interests[7]}'),
                 id="check_8",
                 default=False,
                 on_state_changed=check_changed,
             ),
             Checkbox(
-                Const("✓  Реабилитация"),
-                Const("Реабилитация"),
+                Const(f'✓  {professional_interests[8]}'),
+                Const(f'{professional_interests[8]}'),
                 id="check_9",
                 default=False,
                 on_state_changed=check_changed,
@@ -155,20 +170,21 @@ main_dialog = Dialog(
     ),
     Window(
         Jinja(
-            "<b>Анкета</b>:\n\n"
-            "<b>Фамилия</b>: {{lastname}}\n"
-            "<b>Имя</b>: {{firstname}}\n"
-            "<b>Учреждение</b>: {{institute}}\n"
-            "<b>Интерес 1</b>: {{check_1}}\n"
-            "<b>Интерес 2</b>: {{check_2}}\n"
-            "<b>Интерес 3</b>: {{check_3}}\n"
-            "<b>Интерес 4</b>: {{check_4}}\n"
-            "<b>Интерес 5</b>: {{check_5}}\n"
-            "<b>Интерес 6</b>: {{check_6}}\n"
-            "<b>Интерес 7</b>: {{check_7}}\n"
-            "<b>Интерес 8</b>: {{check_8}}\n"
-            "<b>Интерес 9</b>: {{check_9}}\n"
+            f'<b>Анкета</b>:\n\n'
+            '<b>Фамилия</b>: {{lastname}}\n'
+            '<b>Имя</b>: {{firstname}}\n'
+            '<b>Учреждение</b>: {{institute}}\n'
+            f'<b>{professional_interests[0]}''</b>: {{check_1}}\n'
+            f'<b>{professional_interests[1]}''</b>: {{check_2}}\n'
+            f'<b>{professional_interests[2]}''</b>: {{check_3}}\n'
+            f'<b>{professional_interests[3]}''</b>: {{check_4}}\n'
+            f'<b>{professional_interests[4]}''</b>: {{check_5}}\n'
+            f'<b>{professional_interests[5]}''</b>: {{check_6}}\n'
+            f'<b>{professional_interests[6]}''</b>: {{check_7}}\n'
+            f'<b>{professional_interests[7]}''</b>: {{check_8}}\n'
+            f'<b>{professional_interests[8]}''</b>: {{check_9}}\n'
         ),
+        Back(),
         state=TraumaPointRegister.result,
         getter=get_lastname,
         parse_mode="html",
