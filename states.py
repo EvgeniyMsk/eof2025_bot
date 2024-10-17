@@ -28,6 +28,7 @@ class TraumaPointWork(StatesGroup):
 
 
 class RaffleMenu(StatesGroup):
+    was_registered = State()
     main_menu_input_lastname = State()
     input_number = State()
     result = State()
