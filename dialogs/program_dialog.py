@@ -3,7 +3,7 @@ from aiogram_dialog import Window, Dialog, DialogManager
 from aiogram_dialog.widgets.kbd import Row, Button, Start, Cancel
 from aiogram_dialog.widgets.text import Const
 
-from services import download_service as download_service
+from services import program_download_service as download_service
 from states import ProgramMenu
 
 

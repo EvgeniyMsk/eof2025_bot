@@ -1,2 +1,7 @@
 aiogram-dialog
 aiogram
+python-dotenv
+pydantic-settings
+pydantic
+sqlalchemy
+psycopg2
