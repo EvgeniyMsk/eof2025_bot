@@ -1,0 +1,46 @@
+{
+  "people": [
+    {
+      "user_id": 300970915,
+      "lastname": "Иванов",
+      "firstname": "Сергей",
+      "email": "ivanov.serg@yandex.ru",
+      "institute": "НИИ Восход",
+      "professional_interests": [
+        0, 1, 4, 6, 8
+      ],
+      "non_professional_interests": [
+        0, 1, 6
+      ],
+      "note": "Здесь пара слов о себе про Иванова Сергея"
+    },
+    {
+      "user_id": 300970915,
+      "lastname": "Петров",
+      "firstname": "Иван",
+      "email": "email1@ya.ru",
+      "institute": "ИКСИ",
+      "professional_interests": [
+        0, 6, 8
+      ],
+      "non_professional_interests": [
+        2, 5
+      ],
+      "note": "Здесь пара слов о себе про Петрова Ивана"
+    },
+    {
+      "user_id": 300970915,
+      "lastname": "Щербакова",
+      "firstname": "Мария",
+      "email": "email1@ya.ru",
+      "institute": "Политех",
+      "professional_interests": [
+        7
+      ],
+      "non_professional_interests": [
+        2
+      ],
+      "note": "Здесь пара слов о себе про Щербакову Марию"
+    }
+  ]
+}

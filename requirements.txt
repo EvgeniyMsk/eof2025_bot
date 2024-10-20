@@ -4,4 +4,6 @@ python-dotenv
 pydantic-settings
 pydantic
 sqlalchemy
+sqlalchemy-serializer
 psycopg2
+asyncpg

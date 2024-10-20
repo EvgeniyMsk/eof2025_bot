@@ -1,12 +1,13 @@
 from typing import Any
 
-from aiogram import F
 from aiogram.enums import ParseMode
-from aiogram_dialog import Window, Dialog, DialogManager, Data, ChatEvent
+from aiogram.types import CallbackQuery
+from aiogram_dialog import Window, Dialog, DialogManager, Data, ChatEvent, StartMode
 from aiogram_dialog.widgets.input import TextInput
-from aiogram_dialog.widgets.kbd import Row, Start, ManagedCheckbox, Next, Checkbox, Back, SwitchTo, Cancel
-from aiogram_dialog.widgets.text import Const, Jinja, Text
+from aiogram_dialog.widgets.kbd import Row, Start, ManagedCheckbox, Next, Checkbox, Back, Cancel, Button
+from aiogram_dialog.widgets.text import Const, Jinja
 
+from services.trauma_point_service import register_eof_user
 from states import TraumaPointRegister, TraumaPointWork
 
 
@@ -17,7 +18,17 @@ async def check_changed(event: ChatEvent, checkbox: ManagedCheckbox,
 
 async def main_process_result(start_data: Data, result: Any,
                               dialog_manager: DialogManager):
-    print("We have result:", result)
+    print("We have result1:", result)
+
+
+async def go_clicked(callback: CallbackQuery, button: Button,
+                     dialog_manager: DialogManager):
+    try:
+        register_eof_user(callback, dialog_manager)
+        await dialog_manager.start(TraumaPointWork.main_menu, mode=StartMode.RESET_STACK)
+    except Exception as e:
+        await callback.message.answer(text='Вы уже были зарегистрированы')
+        await dialog_manager.start(TraumaPointWork.main_menu, mode=StartMode.RESET_STACK)
 
 
 async def get_lastname(dialog_manager: DialogManager, **kwargs):
@@ -71,7 +82,6 @@ non_professional_interests = [
     'Искусство и творчество🎨',
     'Технологии и инновации🤖',
 ]
-
 
 main_dialog = Dialog(
     Window(
@@ -256,9 +266,9 @@ main_dialog = Dialog(
         parse_mode=ParseMode.HTML,
     ),
     Window(
-        Jinja(f'Если у Вас есть <b>конкретный профессиональный или личный запрос</b> - напишите его сюда.'),
+        Jinja(f'Напишите пару слов о себе'),
         TextInput(id="personal_request", on_success=Next()),
-        Row(Back(Const("Назад")), Next(Const('Нет, просмотр анкеты'))),
+        Row(Back(Const("Назад")), Next(Const('Пропустить, просмотр анкеты'))),
         state=TraumaPointRegister.personal_request,
         parse_mode=ParseMode.HTML,
     ),
@@ -278,7 +288,7 @@ main_dialog = Dialog(
             f'<b>{professional_interests[6]}''</b>: {{check_7}}\n'
             f'<b>{professional_interests[7]}''</b>: {{check_8}}\n'
             f'<b>{professional_interests[8]}''</b>: {{check_9}}\n'
-            
+
             f'<b>{non_professional_interests[0]}''</b>: {{check_non_1}}\n'
             f'<b>{non_professional_interests[1]}''</b>: {{check_non_2}}\n'
             f'<b>{non_professional_interests[2]}''</b>: {{check_non_3}}\n'
@@ -287,10 +297,10 @@ main_dialog = Dialog(
             f'<b>{non_professional_interests[5]}''</b>: {{check_non_6}}\n'
             f'<b>{non_professional_interests[6]}''</b>: {{check_non_7}}\n'
             f'<b>{non_professional_interests[7]}''</b>: {{check_non_8}}\n'
-            '<b>Персональный запрос</b>: {{personal_request}}\n'
+            '<b>О себе:</b> {{personal_request}}\n'
         ),
         Back(Const('Назад')),
-        Start(Const('Начать общение'), id='start_chatting', state=TraumaPointWork.main_menu),
+        Start(Const('Начать общение'), id='start_chatting', state=TraumaPointWork.main_menu, on_click=go_clicked),
         state=TraumaPointRegister.result,
         getter=get_lastname,
         parse_mode="html",

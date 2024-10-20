@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from database.database import engine
-from database.entities import RaffleUser
+from db.database import engine
+from db.schema import RaffleUser
 
 
 def is_exists(ticket_number: int) -> bool:
