@@ -66,6 +66,15 @@ class NonProfessionalInterest(Base):
     )
 
 
+class RaffleUser(Base):
+    __tablename__ = "raffle_users"
+    metadata = metadata
+    id: Mapped[int] = mapped_column(primary_key=True)
+    telegram_id: Mapped[int] = mapped_column(Integer, default=0, unique=True)
+    lastname: Mapped[str] = mapped_column(String, default='')
+    ticket_number: Mapped[int] = mapped_column(Integer, default=0, unique=True)
+
+
 professional_interests = [
     'Вальгусная деформация стопы',
     'Безоперационное лечение суставов',
@@ -101,4 +110,4 @@ def create_tables():
             session.add(NonProfessionalInterest(name=i))
         session.commit()
 
-create_tables()
+# create_tables()

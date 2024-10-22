@@ -14,7 +14,7 @@ from dialogs import raffle_dialog as raf_dialog
 from dialogs import trauma_point_register_dialog as trp_dialog
 from dialogs import trauma_point_work_dialog as tw_dialog
 from dialogs.main_dialog import main_dialog
-from handlers.test_handler import main_router
+from handlers.start_handler import main_router
 
 
 async def main():

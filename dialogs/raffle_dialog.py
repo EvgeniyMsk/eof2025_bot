@@ -2,14 +2,14 @@ from typing import Dict, Any
 
 from aiogram.enums import ParseMode
 from aiogram.types import CallbackQuery
-from aiogram_dialog import Window, Dialog, DialogManager, Data
+from aiogram_dialog import Window, Dialog, DialogManager, Data, StartMode
 from aiogram_dialog.widgets.common import Whenable
 from aiogram_dialog.widgets.input import TextInput
 from aiogram_dialog.widgets.kbd import Cancel, Next, Back, Button
 from aiogram_dialog.widgets.text import Const, Jinja, Multi
 
-from states import RaffleMenu
 from services import raffle_service
+from states import RaffleMenu, MainMenu
 
 
 def is_contains(data: Dict, widget: Whenable, manager: DialogManager):
@@ -34,11 +34,12 @@ async def raffle_process_result(start_data: Data, result: Any,
 
 
 async def close_subdialog(callback: CallbackQuery, button: Button,
-                          manager: DialogManager):
-    await manager.done(result={
-        "lastname": manager.find("lastname").get_value(),
-        "ticket_number": manager.find("ticket_number").get_value(),
-    })
+                          dialog_manager: DialogManager):
+    try:
+        raffle_service.register_raffle_user(callback, dialog_manager)
+        await dialog_manager.start(MainMenu.main_menu, mode=StartMode.RESET_STACK)
+    except Exception as e:
+        await dialog_manager.start(MainMenu.main_menu, mode=StartMode.RESET_STACK)
 
 
 main_dialog = Dialog(
