@@ -20,7 +20,8 @@ from handlers.start_handler import main_router
 async def main():
     logging.basicConfig(level=logging.INFO)
     storage = MemoryStorage()
-    bot = Bot(token=bot_config.BOT_TOKEN)
+    print(bot_config.BOT_TOKEN)
+    bot = Bot(token=bot_config.main_config.bot_token)
     dp = Dispatcher(storage=storage)
     dp.include_router(router=main_router)
     dp.include_router(router=main_dialog)

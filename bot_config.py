@@ -3,7 +3,7 @@ import os
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
 
-load_dotenv('dev.env')
+load_dotenv()
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 DB_HOST = os.getenv("DB_HOST")

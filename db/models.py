@@ -39,10 +39,12 @@ class EofUser(Base):
     institute: Mapped[str] = mapped_column(String, default='')
     note: Mapped[str] = mapped_column(String, default='')
     professional_interests: Mapped[Set[ProfessionalInterest]] = relationship(
-        secondary=eof_users_professional_interests, back_populates="eof_users"
+        secondary=eof_users_professional_interests, back_populates="eof_users",
+        lazy="subquery",
     )
     non_professional_interests: Mapped[Set[NonProfessionalInterest]] = relationship(
-        secondary=eof_users_non_professional_interests, back_populates="eof_users"
+        secondary=eof_users_non_professional_interests, back_populates="eof_users",
+        lazy="subquery",
     )
 
 
@@ -109,5 +111,42 @@ def create_tables():
         for i in non_professional_interests:
             session.add(NonProfessionalInterest(name=i))
         session.commit()
+
+
+def create_user(tg_id, lastname, firstname, email, institute, note, professional_arr, non_professional_arr):
+    with session_factory() as session:
+        professional_interests = set()
+        non_professional_interests = set()
+
+        professional_interests_from_db = session.query(ProfessionalInterest).all()
+        for i in professional_arr:
+            professional_interests.add(professional_interests_from_db[i])
+
+        non_professional_interests_from_db = session.query(NonProfessionalInterest).all()
+        for i in non_professional_arr:
+            non_professional_interests.add(non_professional_interests_from_db[i])
+
+        user1 = EofUser(
+            telegram_id=tg_id,
+            lastname=lastname,
+            firstname=firstname,
+            email=email,
+            institute=institute,
+            note=note,
+            professional_interests=professional_interests,
+            non_professional_interests=non_professional_interests,
+        )
+        session.add(user1)
+        session.commit()
+
+
+# create_user(tg_id=3,
+#             lastname='Петров',
+#             firstname='Андрей',
+#             email='petroff@yandex.ru',
+#             institute='СПБГМУ им. Павлова',
+#             note='Начинающий врач',
+#             professional_arr=[0, 1, 2],
+#             non_professional_arr=[2, 3],)
 
 # create_tables()
