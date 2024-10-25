@@ -1,8 +1,9 @@
 import json
-from typing import List
+from typing import List, Dict
 
 from aiogram.types import CallbackQuery
 from aiogram_dialog import DialogManager
+from aiogram_dialog.widgets.common import Whenable
 
 from db.models import EofUser, ProfessionalInterest, NonProfessionalInterest
 from db.database import session_factory
@@ -102,6 +103,20 @@ non_professional_interests_dict = {
 
 async def people_getter(dialog_manager: DialogManager, **_kwargs):
     people = get_people_from_db()
+    if (len(people) == 0):
+        return {
+            "pages": 0,
+            "current_page": 0,
+            "id": 0,
+            "telegram_id": 0,
+            "lastname": 0,
+            "firstname": 0,
+            "email": 0,
+            "institute": 0,
+            "professional_interests": [],
+            "non_professional_interests": [],
+            "note": '',
+        }
     current_page = await dialog_manager.find("list_scroll").get_page()
     if current_page > len(people):
         current_page = len(people) - 1
@@ -124,3 +139,11 @@ async def people_getter(dialog_manager: DialogManager, **_kwargs):
         "non_professional_interests": non_prof_arr,
         "note": people[current_page].note,
     }
+
+
+def is_users_contains(data: Dict, widget: Whenable, manager: DialogManager):
+    return len(get_people_from_db()) > 0
+
+
+def is_users_not_contains(data: Dict, widget: Whenable, manager: DialogManager):
+    return len(get_people_from_db()) == 0

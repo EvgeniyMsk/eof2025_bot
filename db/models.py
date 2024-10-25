@@ -140,7 +140,7 @@ def create_user(tg_id, lastname, firstname, email, institute, note, professional
         session.commit()
 
 
-# create_user(tg_id=3,
+# create_user(tg_id=100,
 #             lastname='Петров',
 #             firstname='Андрей',
 #             email='petroff@yandex.ru',
@@ -148,5 +148,14 @@ def create_user(tg_id, lastname, firstname, email, institute, note, professional
 #             note='Начинающий врач',
 #             professional_arr=[0, 1, 2],
 #             non_professional_arr=[2, 3],)
+#
+# create_user(tg_id=200,
+#             lastname='Иванов',
+#             firstname='Сергей',
+#             email='ivanov_s@yandex.ru',
+#             institute='СПБГМУ им. Павлова',
+#             note='Начинающий врач',
+#             professional_arr=[0, 1, 5, 7],
+#             non_professional_arr=[6],)
 
 # create_tables()
