@@ -1,5 +1,12 @@
-import json
+inter1 = set()
+inter2 = set()
 
-from services import trauma_point_service
+inter1.add(1)
+inter1.add(2)
+inter1.add(3)
 
-people = trauma_point_service.get_people_from_db()
+inter2.add(1)
+inter2.add(2)
+inter2.add(6)
+
+print(inter1.intersection(inter2))

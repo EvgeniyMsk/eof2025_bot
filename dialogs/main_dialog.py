@@ -7,6 +7,7 @@ from aiogram_dialog.widgets.text import Const
 
 from dialogs.program_dialog import ProgramMenu
 from dialogs.trauma_point_register_dialog import TraumaPointRegister
+from services import trauma_point_service
 from states import MainMenu, RaffleMenu, QuestMenu, LessonMenu, TraumaPointWork
 
 
@@ -21,12 +22,14 @@ main_dialog = Dialog(
             Start(Const("📋Программа форума"), id="program", state=ProgramMenu.main_menu),
         ),
         Row(
-            Start(Const("💬Trauma-POINT бот для профессиональных знакомств [Регистрация]"), id="trauma_point_register",
+            Start(Const("💬Trauma-POINT бот [Регистрация]"), id="trauma_point_register",
                   state=TraumaPointRegister.main_menu_input_lastname),
+            when=trauma_point_service.user_not_registered
         ),
         Row(
-            Start(Const("💬Trauma-POINT бот для профессиональных знакомств [Анкеты]"), id="trauma_point_work",
+            Start(Const("💬Trauma-POINT бот для профессиональных знакомств"), id="trauma_point_work",
                   state=TraumaPointWork.main_menu),
+            when=trauma_point_service.user_registered
         ),
         Start(Const("🎲Участие в розыгрыше"), id="raffle", state=RaffleMenu.main_menu_input_lastname),
         Start(Const("🤳Квест по выставке"), id="quest", state=QuestMenu.main_menu),

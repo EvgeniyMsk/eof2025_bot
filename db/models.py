@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from functools import total_ordering
 from typing import Set
 
-from sqlalchemy import Column, MetaData, String, Integer
+from sqlalchemy import Column, MetaData, String, Integer, exc
 from sqlalchemy import ForeignKey
 from sqlalchemy import Table
 from sqlalchemy.orm import Mapped
@@ -47,7 +48,14 @@ class EofUser(Base):
         lazy="subquery",
     )
 
+    def suits_by_prof_interests(self, other: EofUser) -> bool:
+        return len(self.professional_interests.intersection(other.professional_interests)) > 0
 
+    def suits_by_non_prof_interests(self, other: EofUser) -> bool:
+        return len(self.non_professional_interests.intersection(other.non_professional_interests)) > 0
+
+
+@total_ordering
 class ProfessionalInterest(Base):
     __tablename__ = "professional_interest"
     metadata = metadata
@@ -57,7 +65,11 @@ class ProfessionalInterest(Base):
         secondary=eof_users_professional_interests, back_populates="professional_interests"
     )
 
+    def __le__(self, other):
+        return self.name <= other.name
 
+
+@total_ordering
 class NonProfessionalInterest(Base):
     __tablename__ = "non_professional_interest"
     metadata = metadata
@@ -66,6 +78,9 @@ class NonProfessionalInterest(Base):
     eof_users: Mapped[Set[EofUser]] = relationship(
         secondary=eof_users_non_professional_interests, back_populates="non_professional_interests"
     )
+
+    def __le__(self, other):
+        return self.name <= other.name
 
 
 class RaffleUser(Base):
@@ -102,7 +117,7 @@ non_professional_interests = [
 
 
 def create_tables():
-    metadata.drop_all(engine)
+    # metadata.drop_all(engine)
     metadata.create_all(engine)
 
     with session_factory() as session:
@@ -139,7 +154,6 @@ def create_user(tg_id, lastname, firstname, email, institute, note, professional
         session.add(user1)
         session.commit()
 
-
 # create_user(tg_id=100,
 #             lastname='Петров',
 #             firstname='Андрей',
@@ -158,4 +172,7 @@ def create_user(tg_id, lastname, firstname, email, institute, note, professional
 #             professional_arr=[0, 1, 5, 7],
 #             non_professional_arr=[6],)
 
-# create_tables()
+try:
+    create_tables()
+except exc.SQLAlchemyError:
+    print("SQLAlchemyError. Tables were created.")

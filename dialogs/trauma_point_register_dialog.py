@@ -8,7 +8,7 @@ from aiogram_dialog.widgets.kbd import Row, Start, ManagedCheckbox, Next, Checkb
 from aiogram_dialog.widgets.text import Const, Jinja
 
 from services.trauma_point_service import register_eof_user
-from states import TraumaPointRegister, TraumaPointWork
+from states import TraumaPointRegister, TraumaPointWork, MainMenu
 
 
 async def check_changed(event: ChatEvent, checkbox: ManagedCheckbox,
@@ -19,6 +19,11 @@ async def check_changed(event: ChatEvent, checkbox: ManagedCheckbox,
 async def main_process_result(start_data: Data, result: Any,
                               dialog_manager: DialogManager):
     print("We have result1:", result)
+
+
+async def go_to_main(callback: CallbackQuery, button: Button,
+                     dialog_manager: DialogManager):
+    await dialog_manager.start(MainMenu.main_menu, mode=StartMode.RESET_STACK)
 
 
 async def go_clicked(callback: CallbackQuery, button: Button,
@@ -92,7 +97,7 @@ main_dialog = Dialog(
               f'просто приятных бесед во время кофе-брейков.\r\n'
               f'\r\n'
               f'<b>Для продолжения введите Вашу фамилию</b>'),
-        Row(Cancel(Const("Назад"))),
+        Button(Const(text="Назад"), id='to_main', on_click=go_to_main),
         TextInput(id="lastname", on_success=Next()),
         state=TraumaPointRegister.main_menu_input_lastname,
         parse_mode="html",

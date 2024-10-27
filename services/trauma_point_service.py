@@ -16,10 +16,15 @@ def get_people():
     return people
 
 
-def get_people_from_db() -> List[EofUser]:
-    with session_factory() as session:
-        people = session.query(EofUser).all()
-        return people
+def get_people_from_db(dialog_manager: DialogManager) -> List[EofUser]:
+    with (session_factory() as session):
+        people = session.query(EofUser).where(EofUser.telegram_id != dialog_manager.event.from_user.id)
+        current_person = session.query(EofUser).where(EofUser.telegram_id == dialog_manager.event.from_user.id).first()
+        result = list()
+        for person in people:
+            if person.suits_by_prof_interests(current_person) or person.suits_by_non_prof_interests(current_person):
+                result.append(person)
+        return result
 
 
 def register_eof_user(callback: CallbackQuery, dialog_manager: DialogManager):
@@ -73,7 +78,17 @@ def register_eof_user(callback: CallbackQuery, dialog_manager: DialogManager):
     eof_user.non_professional_interests = non_professional_interests
 
     with session_factory() as session:
-        session.add(eof_user)
+        if not (session.query(EofUser).where(EofUser.telegram_id == dialog_manager.event.from_user.id)).first():
+            session.add(eof_user)
+        else:
+            updating_person = session.query(EofUser).where(EofUser.telegram_id == dialog_manager.event.from_user.id).first()
+            updating_person.lastname = dialog_manager.find("lastname").get_value()
+            updating_person.firstname = dialog_manager.find("firstname").get_value()
+            updating_person.email = dialog_manager.find("email").get_value()
+            updating_person.institute = dialog_manager.find("institute").get_value()
+            updating_person.note = dialog_manager.find("personal_request").get_value()
+            updating_person.professional_interests = professional_interests
+            updating_person.non_professional_interests = non_professional_interests
         session.commit()
 
 
@@ -102,8 +117,8 @@ non_professional_interests_dict = {
 
 
 async def people_getter(dialog_manager: DialogManager, **_kwargs):
-    people = get_people_from_db()
-    if (len(people) == 0):
+    people = get_people_from_db(dialog_manager)
+    if len(people) == 0:
         return {
             "pages": 0,
             "current_page": 0,
@@ -122,9 +137,9 @@ async def people_getter(dialog_manager: DialogManager, **_kwargs):
         current_page = len(people) - 1
     prof_arr: str = '\r\n'
     non_prof_arr: str = '\r\n'
-    for i in people[current_page].professional_interests:
+    for i in sorted(people[current_page].professional_interests):
         prof_arr = prof_arr + professional_interests_dict[i.id] + '\r\n'
-    for i in people[current_page].non_professional_interests:
+    for i in sorted(people[current_page].non_professional_interests):
         non_prof_arr = non_prof_arr + non_professional_interests_dict[i.id] + '\r\n'
     return {
         "pages": len(people),
@@ -142,8 +157,20 @@ async def people_getter(dialog_manager: DialogManager, **_kwargs):
 
 
 def is_users_contains(data: Dict, widget: Whenable, manager: DialogManager):
-    return len(get_people_from_db()) > 0
+    return len(get_people_from_db(manager)) > 0
 
 
 def is_users_not_contains(data: Dict, widget: Whenable, manager: DialogManager):
-    return len(get_people_from_db()) == 0
+    return len(get_people_from_db(manager)) == 0
+
+
+def user_registered(data: Dict, widget: Whenable, manager: DialogManager):
+    with session_factory() as session:
+        person = session.query(EofUser).where(EofUser.telegram_id == manager.event.from_user.id)
+    return person.count() > 0
+
+
+def user_not_registered(data: Dict, widget: Whenable, manager: DialogManager):
+    with session_factory() as session:
+        person = session.query(EofUser).where(EofUser.telegram_id == manager.event.from_user.id)
+    return person.count() <= 0

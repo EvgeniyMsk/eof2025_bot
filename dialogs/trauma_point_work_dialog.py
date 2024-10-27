@@ -6,9 +6,7 @@ from aiogram_dialog.widgets.kbd import Button, StubScroll, Row, FirstPage, \
 from aiogram_dialog.widgets.text import Const, Format
 
 from services import trauma_point_service
-from states import TraumaPointWork, MainMenu
-
-people = trauma_point_service.get_people_from_db()
+from states import TraumaPointWork, MainMenu, TraumaPointRegister
 
 
 async def go_to_main(callback: CallbackQuery, button: Button,
@@ -16,7 +14,9 @@ async def go_to_main(callback: CallbackQuery, button: Button,
     await dialog_manager.start(MainMenu.main_menu, mode=StartMode.RESET_STACK)
 
 
-
+async def go_to_profile(callback: CallbackQuery, button: Button,
+                        dialog_manager: DialogManager):
+    await dialog_manager.start(TraumaPointRegister.main_menu_input_lastname, mode=StartMode.RESET_STACK)
 
 
 # async def go_clicked(callback: CallbackQuery, button: Button,
@@ -62,6 +62,7 @@ main_dialog = Dialog(
             ),
             when=trauma_point_service.is_users_contains
         ),
+        Button(Const(text="Изменить профиль"), id='to_change_profile', on_click=go_to_profile),
         Button(Const(text="На главную"), id='to_main', on_click=go_to_main),
         state=TraumaPointWork.main_menu,
         getter=trauma_point_service.people_getter,
