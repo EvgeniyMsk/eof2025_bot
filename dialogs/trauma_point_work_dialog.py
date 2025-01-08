@@ -1,10 +1,13 @@
 from aiogram.enums import ParseMode
 from aiogram.types import CallbackQuery
-from aiogram_dialog import Window, Dialog, DialogManager, StartMode
+from aiogram.types import Chat, User
+from aiogram_dialog import Window, Dialog, DialogManager, StartMode, ShowMode
+from aiogram_dialog.manager.bg_manager import BgManager
 from aiogram_dialog.widgets.kbd import Button, StubScroll, Row, FirstPage, \
     PrevPage, NextPage, LastPage, Url, Column
 from aiogram_dialog.widgets.text import Const, Format
 
+import bot_config
 from services import trauma_point_service
 from states import TraumaPointWork, MainMenu, TraumaPointRegister
 
@@ -13,6 +16,10 @@ async def go_to_main(callback: CallbackQuery, button: Button,
                      dialog_manager: DialogManager):
     await dialog_manager.start(MainMenu.main_menu, mode=StartMode.RESET_STACK)
 
+async def write_to_profile(callback: CallbackQuery, button: Button,
+                        dialog_manager: DialogManager):
+    print(callback.message.from_user.url)
+    await dialog_manager.start(MainMenu.main_menu, show_mode=ShowMode.SEND)
 
 async def go_to_profile(callback: CallbackQuery, button: Button,
                         dialog_manager: DialogManager):
@@ -40,10 +47,17 @@ main_dialog = Dialog(
                "<b>О себе:</b> {note}\r\n",
                when=trauma_point_service.is_users_contains),
         StubScroll(id="list_scroll", pages="pages"),
+        # Row(
+        #     Url(
+        #         Format("Написать"),
+        #         Format("tg://openmessage?user_id={telegram_id}"),
+        #     ),
+        #     when=trauma_point_service.is_users_contains
+        # ),
         Row(
             Url(
-                Format("Написать"),
-                Format("tg://openmessage?user_id={telegram_id}"),
+                Format("Написать пользователю"),
+                Format("tg://user?id={telegram_id}"),
             ),
             when=trauma_point_service.is_users_contains
         ),
