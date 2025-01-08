@@ -22,7 +22,7 @@ main_dialog = Dialog(
             Start(Const("📋Программа форума"), id="program", state=ProgramMenu.main_menu),
         ),
         Row(
-            Start(Const("💬Trauma-POINT бот [Регистрация]"), id="trauma_point_register",
+            Start(Const("💬Trauma-POINT бот для профессиональных знакомств"), id="trauma_point_register",
                   state=TraumaPointRegister.main_menu_input_lastname),
             when=trauma_point_service.user_not_registered
         ),
@@ -31,9 +31,9 @@ main_dialog = Dialog(
                   state=TraumaPointWork.main_menu),
             when=trauma_point_service.user_registered
         ),
-        Start(Const("🎲Участие в розыгрыше"), id="raffle", state=RaffleMenu.main_menu_input_lastname),
+        # Start(Const("🎲Участие в розыгрыше"), id="raffle", state=RaffleMenu.main_menu_input_lastname),
         Start(Const("🤳Квест по выставке"), id="quest", state=QuestMenu.main_menu),
-        Start(Const("✍️Стендовые доклады"), id="stand_presentation", state=LessonMenu.main_menu),
+        Start(Const("✍️ЕОФ-постеры"), id="stand_presentation", state=LessonMenu.main_menu),
         state=MainMenu.main_menu,
     ),
     on_process_result=main_process_result,

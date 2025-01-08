@@ -30,10 +30,10 @@ main_dialog = Dialog(
                when=trauma_point_service.is_users_not_contains),
         Format(f"<b>Trauma-POINT</b> знакомства\r\n\r\n"
                f"<b>Анкета:</b>\r\n"
-               "<b>id:</b>{id}\r\n"
-               "<b>telegram_id:</b>{telegram_id}\r\n"
+               # "<b>id:</b>{id}\r\n"
+               # "<b>telegram_id:</b>{telegram_id}\r\n"
                "<b>Имя:</b> {lastname} {firstname}\r\n"
-               "<b>email:</b> {email}\r\n"
+               # "<b>email:</b> {email}\r\n"
                "<b>Организация:</b> {institute}\r\n"
                "<b>Профессиональные интересы:</b> {professional_interests}\r\n"
                "<b>Непрофессиональные интересы:</b> {non_professional_interests}\r\n"
