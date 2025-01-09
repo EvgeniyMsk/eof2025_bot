@@ -7,6 +7,14 @@ from aiogram_dialog.widgets.kbd import Button
 from bot_config import main_config
 
 
+async def empty(callback: CallbackQuery, button: Button,
+                manager: DialogManager):
+    return 0
+    # await callback.message.answer_document(
+    #     document=FSInputFile(os.path.join(main_config.file_location, 'program/arthroscopy.pdf')),
+    #     caption='Артроскопия')
+
+
 async def arthroscopy(callback: CallbackQuery, button: Button,
                       manager: DialogManager):
     await callback.message.answer_document(
@@ -80,7 +88,8 @@ async def polytrauma(callback: CallbackQuery, button: Button,
 async def reconstructive_surgery_of_the_extremities(callback: CallbackQuery, button: Button,
                                                     manager: DialogManager):
     await callback.message.answer_document(
-        document=FSInputFile(os.path.join(main_config.file_location, 'program/reconstructive_surgery_of_the_extremities.pdf')),
+        document=FSInputFile(
+            os.path.join(main_config.file_location, 'program/reconstructive_surgery_of_the_extremities.pdf')),
         caption='Реконструктивная хирургия конечностей')
 
 

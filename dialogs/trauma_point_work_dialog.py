@@ -1,6 +1,8 @@
+from aiogram import types
 from aiogram.enums import ParseMode
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, InlineKeyboardButton
 from aiogram.types import Chat, User
+from aiogram.utils.keyboard import InlineKeyboardBuilder, KeyboardBuilder, ButtonType
 from aiogram_dialog import Window, Dialog, DialogManager, StartMode, ShowMode
 from aiogram_dialog.manager.bg_manager import BgManager
 from aiogram_dialog.widgets.kbd import Button, StubScroll, Row, FirstPage, \
@@ -18,7 +20,6 @@ async def go_to_main(callback: CallbackQuery, button: Button,
 
 async def write_to_profile(callback: CallbackQuery, button: Button,
                         dialog_manager: DialogManager):
-    print(callback.message.from_user.url)
     await dialog_manager.start(MainMenu.main_menu, show_mode=ShowMode.SEND)
 
 async def go_to_profile(callback: CallbackQuery, button: Button,
@@ -29,6 +30,7 @@ async def go_to_profile(callback: CallbackQuery, button: Button,
 # async def go_clicked(callback: CallbackQuery, button: Button,
 #                      manager: DialogManager):
 #     await callback.message.answer("Ок")
+
 
 
 main_dialog = Dialog(

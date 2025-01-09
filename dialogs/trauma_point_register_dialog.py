@@ -10,6 +10,8 @@ from aiogram_dialog.widgets.text import Const, Jinja
 from services.trauma_point_service import register_eof_user
 from states import TraumaPointRegister, TraumaPointWork, MainMenu
 
+def get_pre_result() -> str:
+    return 'test'
 
 async def check_changed(event: ChatEvent, checkbox: ManagedCheckbox,
                         manager: DialogManager):
@@ -284,25 +286,33 @@ main_dialog = Dialog(
             '<b>Имя</b>: {{firstname}}\n'
             '<b>E-mail</b>: {{email}}\n'
             '<b>Учреждение</b>: {{institute}}\n'
-            f'<b>{professional_interests[0]}''</b>: {{check_1}}\n'
-            f'<b>{professional_interests[1]}''</b>: {{check_2}}\n'
-            f'<b>{professional_interests[2]}''</b>: {{check_3}}\n'
-            f'<b>{professional_interests[3]}''</b>: {{check_4}}\n'
-            f'<b>{professional_interests[4]}''</b>: {{check_5}}\n'
-            f'<b>{professional_interests[5]}''</b>: {{check_6}}\n'
-            f'<b>{professional_interests[6]}''</b>: {{check_7}}\n'
-            f'<b>{professional_interests[7]}''</b>: {{check_8}}\n'
-            f'<b>{professional_interests[8]}''</b>: {{check_9}}\n'
+            '{% if check_1 == True %}<b>' + professional_interests[0] + '</b>\n {% endif %}' +
+            '{% if check_2 == True %}<b>' + professional_interests[1] + '</b>\n {% endif %}' +
+            '{% if check_3 == True %}<b>' + professional_interests[2] + '</b>\n {% endif %}' +
+            '{% if check_4 == True %}<b>' + professional_interests[3] + '</b>\n {% endif %}' +
+            '{% if check_5 == True %}<b>' + professional_interests[4] + '</b>\n {% endif %}' +
+            '{% if check_6 == True %}<b>' + professional_interests[5] + '</b>\n {% endif %}' +
+            '{% if check_7 == True %}<b>' + professional_interests[6] + '</b>\n {% endif %}' +
+            '{% if check_8 == True %}<b>' + professional_interests[7] + '</b>\n {% endif %}' +
+            '{% if check_9 == True %}<b>' + professional_interests[8] + '</b>\n {% endif %}' +
 
-            f'<b>{non_professional_interests[0]}''</b>: {{check_non_1}}\n'
-            f'<b>{non_professional_interests[1]}''</b>: {{check_non_2}}\n'
-            f'<b>{non_professional_interests[2]}''</b>: {{check_non_3}}\n'
-            f'<b>{non_professional_interests[3]}''</b>: {{check_non_4}}\n'
-            f'<b>{non_professional_interests[4]}''</b>: {{check_non_5}}\n'
-            f'<b>{non_professional_interests[5]}''</b>: {{check_non_6}}\n'
-            f'<b>{non_professional_interests[6]}''</b>: {{check_non_7}}\n'
-            f'<b>{non_professional_interests[7]}''</b>: {{check_non_8}}\n'
-            '<b>О себе:</b> {{personal_request}}\n'
+            '{% if check_non_1 == True %}<b>' + non_professional_interests[0] + '</b>\n {% endif %}' +
+            '{% if check_non_2 == True %}<b>' + non_professional_interests[1] + '</b>\n {% endif %}' +
+            '{% if check_non_3 == True %}<b>' + non_professional_interests[2] + '</b>\n {% endif %}' +
+            '{% if check_non_4 == True %}<b>' + non_professional_interests[3] + '</b>\n {% endif %}' +
+            '{% if check_non_5 == True %}<b>' + non_professional_interests[4] + '</b>\n {% endif %}' +
+            '{% if check_non_6 == True %}<b>' + non_professional_interests[5] + '</b>\n {% endif %}' +
+            '{% if check_non_7 == True %}<b>' + non_professional_interests[6] + '</b>\n {% endif %}' +
+            '{% if check_non_8 == True %}<b>' + non_professional_interests[7] + '</b>\n {% endif %}' +
+            # f'<b>{non_professional_interests[0]}''</b>: {{check_non_1}}\n'
+            # f'<b>{non_professional_interests[1]}''</b>: {{check_non_2}}\n'
+            # f'<b>{non_professional_interests[2]}''</b>: {{check_non_3}}\n'
+            # f'<b>{non_professional_interests[3]}''</b>: {{check_non_4}}\n'
+            # f'<b>{non_professional_interests[4]}''</b>: {{check_non_5}}\n'
+            # f'<b>{non_professional_interests[5]}''</b>: {{check_non_6}}\n'
+            # f'<b>{non_professional_interests[6]}''</b>: {{check_non_7}}\n'
+            # f'<b>{non_professional_interests[7]}''</b>: {{check_non_8}}\n'
+            '{% if personal_request != None %} <b>О себе:</b> {{personal_request}}\n {% endif %}'
         ),
         Back(Const('Назад')),
         Start(Const('Начать общение'), id='start_chatting', state=TraumaPointWork.main_menu, on_click=go_clicked),
