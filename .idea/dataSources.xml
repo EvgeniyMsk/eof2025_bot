@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="eof2025_db@155.0.103.231" uuid="90c9f8ee-61f0-47cf-96b3-a3575d9ebda9">
+    <data-source source="LOCAL" name="postgres@localhost" uuid="90c9f8ee-61f0-47cf-96b3-a3575d9ebda9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://155.0.103.231:5432/eof2025_db</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
