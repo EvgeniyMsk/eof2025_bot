@@ -1,5 +1,7 @@
+import os
+
 from aiogram import types
-from aiogram.enums import ParseMode
+from aiogram.enums import ParseMode, ContentType
 from aiogram.types import CallbackQuery, InlineKeyboardButton
 from aiogram.types import Chat, User
 from aiogram.utils.keyboard import InlineKeyboardBuilder, KeyboardBuilder, ButtonType
@@ -7,6 +9,7 @@ from aiogram_dialog import Window, Dialog, DialogManager, StartMode, ShowMode
 from aiogram_dialog.manager.bg_manager import BgManager
 from aiogram_dialog.widgets.kbd import Button, StubScroll, Row, FirstPage, \
     PrevPage, NextPage, LastPage, Url, Column
+from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const, Format
 
 import bot_config
@@ -35,9 +38,13 @@ async def go_to_profile(callback: CallbackQuery, button: Button,
 
 main_dialog = Dialog(
     Window(
+        StaticMedia(
+            path=os.path.abspath(os.path.curdir) + '/files/images/trauma_point/trauma_point_theme.png',
+            type=ContentType.PHOTO,
+        ),
         Format(f"Нет подходящих профилей :(",
                when=trauma_point_service.is_users_not_contains),
-        Format(f"<b>Trauma-POINT</b> знакомства\r\n\r\n"
+        Format(f"<b>Trauma-POINT – знакомства на ЕОФ</b>\r\n\r\n"
                f"<b>Анкета:</b>\r\n"
                # "<b>id:</b>{id}\r\n"
                # "<b>telegram_id:</b>{telegram_id}\r\n"

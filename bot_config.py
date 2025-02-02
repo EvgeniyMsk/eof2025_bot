@@ -2,8 +2,9 @@ from dotenv import load_dotenv
 import os
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic.alias_generators import to_camel
+from os.path import join, dirname
 
-load_dotenv()
+load_dotenv(join(dirname(__file__), '.dev.env'))
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 DB_HOST = os.getenv("DB_HOST")
@@ -42,3 +43,5 @@ main_config = MainConfig(
     file_location=FILE_LOCATION,
     connection_string=f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 )
+
+print(main_config)

@@ -1,10 +1,12 @@
+import os
 from typing import Any
 
-from aiogram.enums import ParseMode
+from aiogram.enums import ParseMode, ContentType
 from aiogram.types import CallbackQuery
 from aiogram_dialog import Window, Dialog, DialogManager, Data, ChatEvent, StartMode
 from aiogram_dialog.widgets.input import TextInput
 from aiogram_dialog.widgets.kbd import Row, Start, ManagedCheckbox, Next, Checkbox, Back, Cancel, Button
+from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const, Jinja
 
 from services.trauma_point_service import register_eof_user
@@ -92,9 +94,13 @@ non_professional_interests = [
 
 main_dialog = Dialog(
     Window(
-        Jinja(f'<b>"Trauma-POINT"</b>💬 - это чат-бот для '
+        StaticMedia(
+            path=os.path.abspath(os.path.curdir) + '/files/images/trauma_point/trauma_point_theme.png',
+            type=ContentType.PHOTO,
+        ),
+        Jinja(f'<b>Trauma-POINT – знакомства на ЕОФ</b>💬 - это чат-бот для '
               f'профессиональных знакомств травматологов-ортопедов.\r\n'
-              f'<b>"Trauma-POINT"</b> помогает быстро находить '
+              f'<b>Trauma-POINT – знакомства на ЕОФ</b> помогает быстро находить '
               f'собеседников для профессиональных знакомств или '
               f'просто приятных бесед во время кофе-брейков.\r\n'
               f'\r\n'

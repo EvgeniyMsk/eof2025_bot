@@ -1,7 +1,11 @@
+import os
+
+from aiogram.enums import ContentType, ParseMode
 from aiogram.types import CallbackQuery
 from aiogram_dialog import Window, Dialog, DialogManager
 from aiogram_dialog.widgets.kbd import Row, Button, Cancel
-from aiogram_dialog.widgets.text import Const, Text
+from aiogram_dialog.widgets.media import StaticMedia
+from aiogram_dialog.widgets.text import Const, Text, Jinja
 
 from services import program_download_service as download_service
 from states import ProgramMenu
@@ -12,22 +16,27 @@ async def close_program_dialog(callback: CallbackQuery, button: Button,
     await manager.done(result={"program_dialog": "done"})
 
 main_window = Window(
-    Const("📋Раздел: Программа форума"),
-    Const("Артроскопия"),
-    Const("Хирургия стопы и голеностопного сустава"),
-    Const("Военно-полевая хирургия"),
-    Const("Хирургия кисти и кистевого сустава"),
-    Const("Ортопедическая реабилитация"),
-    Const("Спортивная медицина"),
-    Const("Эндопротезирование суставов"),
-    Const("Травматология"),
-    Const("Детская травма"),
-    Const("Политравма"),
-    Const("Реконструктивная хирургия конечностей"),
-    Const("Хирургия позвоночника"),
-    Const("Ортобиология"),
-    Const("Онкоортопедия"),
-
+    StaticMedia(
+        path=os.path.abspath(os.path.curdir) + '/files/images/program_dialog/program_theme.png',
+        type=ContentType.PHOTO,
+    ),
+    Jinja(
+        f'📋<b>Раздел: Программа форума.</b>\n\n'
+        '· Артроскопия\n'
+        '· Хирургия стопы и голеностопного сустава\n'
+        '· Военно-полевая хирургия\n'
+        '· Хирургия кисти и кистевого сустава\n'
+        '· Ортопедическая реабилитация\n'
+        '· Спортивная медицина\n'
+        '· Эндопротезирование суставов\n'
+        '· Травматология\n'
+        '· Детская травма\n'
+        '· Политравма\n'
+        '· Реконструктивная хирургия конечностей\n'
+        '· Хирургия позвоночника\n'
+        '· Ортобиология\n'
+        '· Онкоортопедия\n'
+    ),
     # Row(Button(Const("Артроскопия"), id="arthroscopy",
     #            on_click=download_service.empty), ),
     # Row(Button(Const("Хирургия стопы и голеностопного сустава"), id="foot_ankle_surgery",
@@ -57,6 +66,7 @@ main_window = Window(
     # Row(Button(Const("Онкоортопедия"), id="oncoorthopedics",
     #            on_click=download_service.empty), ),
     Cancel(Const("Назад")),
+    parse_mode=ParseMode.HTML,
     state=ProgramMenu.main_menu
 )
 
