@@ -36,6 +36,12 @@ class RaffleMenu(StatesGroup):
 
 class QuestMenu(StatesGroup):
     main_menu = State()
+    task_1 = State()
+    task_2 = State()
+    task_3 = State()
+    task_4 = State()
+    task_5 = State()
+    finish = State()
 
 
 class LessonMenu(StatesGroup):
