@@ -61,7 +61,7 @@ main_dialog = Dialog(
             when=trauma_point_service.user_registered
         ),
         # Start(Const("🎲Участие в розыгрыше"), id="raffle", state=RaffleMenu.main_menu_input_lastname),
-        Start(Const("🤳Квест по выставке"), id="quest", state=QuestMenu.main_menu),
+        #Start(Const("🤳Квест по выставке"), id="quest", state=QuestMenu.main_menu),
         Start(Const("✍️Подать доклад"), id="stand_presentation", state=LessonMenu.main_menu),
         state=MainMenu.main_menu,
         parse_mode=ParseMode.HTML,

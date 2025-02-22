@@ -6,6 +6,12 @@ from aiogram_dialog.widgets.kbd import Button
 
 from bot_config import main_config
 
+async def main_program(callback: CallbackQuery, button: Button,
+                             manager: DialogManager):
+    await callback.message.answer_document(
+        document=FSInputFile(os.path.abspath(os.path.curdir) + '/files/program/Архитектура ЕОФ-2025 от 20.02.pdf'),
+        caption='Архитектура научной программы ЕОФ 2025')
+
 
 async def empty(callback: CallbackQuery, button: Button,
                 manager: DialogManager):
