@@ -13,6 +13,7 @@ DB_PASS = os.getenv("DB_PASS")
 DB_NAME = os.getenv("DB_NAME")
 DB_PORT = os.getenv("DB_PORT")
 FILE_LOCATION = os.getenv("FILE_LOCATION")
+ADMIN_ID = os.getenv("ADMIN_ID")
 
 
 class MainConfigModel(BaseModel):
@@ -31,6 +32,7 @@ class MainConfig(MainConfigModel):
     database_port: str = Field()
     file_location: str = Field()
     connection_string: str = Field()
+    admin_id: str = Field()
 
 
 main_config = MainConfig(
@@ -41,7 +43,8 @@ main_config = MainConfig(
     database_password=DB_PASS,
     database_port=DB_PORT,
     file_location=FILE_LOCATION,
-    connection_string=f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+    connection_string=f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}',
+    admin_id = ADMIN_ID
 )
 
 print(main_config)

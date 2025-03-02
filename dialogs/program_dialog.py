@@ -11,12 +11,14 @@ from aiogram_dialog.widgets.kbd import Row, Button, Cancel, Start
 from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const, Jinja
 
+import bot_config
 from services import program_download_service as download_service
 from states import ProgramMenu
 from main import download_document
 
+
 def in_admin(data: Dict, widget: Whenable, manager: DialogManager):
-    return manager.event.from_user.id == 300970915
+    return manager.event.from_user.id == int(bot_config.ADMIN_ID)
 
 
 async def document_handler(
