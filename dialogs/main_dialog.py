@@ -1,20 +1,17 @@
 import os
-from os.path import join, dirname
 from typing import Any
 
 from aiogram.enums import ContentType, ParseMode
-from aiogram.fsm.state import State
-from aiogram.utils.keyboard import KeyboardBuilder, InlineKeyboardBuilder, ButtonType
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram_dialog import Window, Dialog, DialogManager, Data
-from aiogram_dialog.widgets.kbd import Row, Start, Button, Group, Column
+from aiogram_dialog.widgets.kbd import Row, Start
 from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const, Jinja
 
-from bot_config import main_config
 from dialogs.program_dialog import ProgramMenu
 from dialogs.trauma_point_register_dialog import TraumaPointRegister
 from services import trauma_point_service
-from states import MainMenu, RaffleMenu, QuestMenu, LessonMenu, TraumaPointWork
+from states import MainMenu, LessonMenu, TraumaPointWork
 
 
 def none():
@@ -22,7 +19,6 @@ def none():
 
 
 builder = InlineKeyboardBuilder()
-
 
 
 async def main_process_result(start_data: Data, result: Any,

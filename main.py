@@ -1,8 +1,10 @@
 import asyncio
 import logging
+import os
 
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.types import Message
 from aiogram_dialog import (
     setup_dialogs, )
 
@@ -16,12 +18,12 @@ from dialogs import trauma_point_work_dialog as tw_dialog
 from dialogs.main_dialog import main_dialog
 from handlers.start_handler import main_router
 
+bot = Bot(token=bot_config.main_config.bot_token)
+
 
 async def main():
     logging.basicConfig(level=logging.INFO)
     storage = MemoryStorage()
-    print(bot_config.BOT_TOKEN)
-    bot = Bot(token=bot_config.main_config.bot_token)
     dp = Dispatcher(storage=storage)
     dp.include_router(router=main_router)
     dp.include_router(router=main_dialog)
@@ -34,6 +36,16 @@ async def main():
 
     setup_dialogs(dp)
     await dp.start_polling(bot)
+
+
+async def download_document(message: Message, path: str):
+    file_id = message.document.file_id
+    file_name = message.document.file_name
+    file = await bot.get_file(file_id)
+    file_path = file.file_path
+    destination = os.path.abspath(os.path.curdir) + path
+    await bot.download_file(file_path, destination)
+    await message.reply(f"Файл {file_name} успешно сохранен на сервере.")
 
 if __name__ == '__main__':
     asyncio.run(main())

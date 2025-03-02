@@ -7,9 +7,7 @@ class MainMenu(StatesGroup):
 
 class ProgramMenu(StatesGroup):
     main_menu = State()
-    program_19_06_menu = State()
-    program_20_06_menu = State()
-    program_21_06_menu = State()
+    update_program = State()
 
 
 class TraumaPointRegister(StatesGroup):
