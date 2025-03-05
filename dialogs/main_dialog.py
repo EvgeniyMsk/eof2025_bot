@@ -11,7 +11,7 @@ from aiogram_dialog.widgets.text import Const, Jinja
 from dialogs.program_dialog import ProgramMenu
 from dialogs.trauma_point_register_dialog import TraumaPointRegister
 from services import trauma_point_service
-from states import MainMenu, LessonMenu, TraumaPointWork
+from states import MainMenu, LessonMenu, TraumaPointWork, HelpMenu
 
 
 def none():
@@ -59,6 +59,7 @@ main_dialog = Dialog(
         # Start(Const("🎲Участие в розыгрыше"), id="raffle", state=RaffleMenu.main_menu_input_lastname),
         #Start(Const("🤳Квест по выставке"), id="quest", state=QuestMenu.main_menu),
         Start(Const("✍️Подать доклад"), id="stand_presentation", state=LessonMenu.main_menu),
+        Start(Const("🔖Техническая поддержка"), id="help", state=HelpMenu.main_menu),
         state=MainMenu.main_menu,
         parse_mode=ParseMode.HTML,
     ),

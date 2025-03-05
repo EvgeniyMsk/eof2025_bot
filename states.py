@@ -44,3 +44,7 @@ class QuestMenu(StatesGroup):
 
 class LessonMenu(StatesGroup):
     main_menu = State()
+
+
+class HelpMenu(StatesGroup):
+    main_menu = State()

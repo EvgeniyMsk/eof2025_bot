@@ -13,6 +13,7 @@ from dialogs import lesson_dialog as ld_dialog
 from dialogs import program_dialog as pg_dialog
 from dialogs import quest_dialog as qd_dialog
 from dialogs import raffle_dialog as raf_dialog
+from dialogs import help_dialog
 from dialogs import trauma_point_register_dialog as trp_dialog
 from dialogs import trauma_point_work_dialog as tw_dialog
 from dialogs.main_dialog import main_dialog
@@ -33,6 +34,7 @@ async def main():
     dp.include_router(router=qd_dialog.main_dialog)
     dp.include_router(router=ld_dialog.main_dialog)
     dp.include_router(router=tw_dialog.main_dialog)
+    dp.include_router(router=help_dialog.main_dialog)
 
     setup_dialogs(dp)
     await dp.start_polling(bot)
