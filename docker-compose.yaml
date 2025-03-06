@@ -12,14 +12,6 @@ services:
 #      POSTGRES_USER: postgres
 #      POSTGRES_PASSWORD: postgres
 #      POSTGRES_DB: eof2025_db
-  tg_bot:
-    build: ./
-    container_name: "eof2025_bot"
-    restart: always
-    volumes:
-      - .dev.env:/eof2025_bot/.dev.env
-      - .env:/eof2025_bot/.env
-      - bot_config.py:/eof2025_bot/bot_config.py
   redis:
     image: redis
     container_name: "redis"
@@ -30,3 +22,13 @@ services:
       - redis-server --requirepass "redis"
     ports:
       - "6379:6379"
+  tg_bot:
+    build: ./
+    container_name: "eof2025_bot"
+    restart: always
+    volumes:
+      - .dev.env:/eof2025_bot/.dev.env
+      - .env:/eof2025_bot/.env
+      - ./bot_config.py:/eof2025_bot/bot_config.py
+    depends_on:
+      - redis
