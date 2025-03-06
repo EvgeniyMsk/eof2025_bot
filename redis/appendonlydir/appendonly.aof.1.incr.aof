@@ -1,0 +1,285 @@
+*2
+$6
+SELECT
+$1
+0
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:cH51Ka:data
+$192
+{"_intent_id": "cH51Ka", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["cH51Ka"], "last_message_id": 76, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*2
+$3
+DEL
+$49
+fsm:300970915:300970915:aiogd:context:cH51Ka:data
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$262
+{"_id": "", "intents": [], "last_message_id": 76, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$48
+fsm:300970915:300970915:aiogd:context:CASy9:data
+$193
+{"_intent_id": "CASy9", "_stack_id": "", "state": "LessonMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$279
+{"_id": "", "intents": ["QulP08", "CASy9"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVVdLTCgaHDVFCBCCxvA7UtU8AAhDqMRv0eVBKr46DeGZAp0MBAAMCAAN5AAM2BA", "last_media_unique_id": "AQADEOoxG_R5UEp-", "last_income_media_group_id": null}
+*2
+$3
+DEL
+$48
+fsm:300970915:300970915:aiogd:context:CASy9:data
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVVdLTCgaHDVFCBCCxvA7UtU8AAhDqMRv0eVBKr46DeGZAp0MBAAMCAAN5AAM2BA", "last_media_unique_id": "AQADEOoxG_R5UEp-", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:A8BH11:data
+$195
+{"_intent_id": "A8BH11", "_stack_id": "", "state": "ProgramMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$280
+{"_id": "", "intents": ["QulP08", "A8BH11"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVbkZgzXtdRkGHJpufP8Pzu4oAAhnqMRvww1BKNWDlSq7dGQYBAAMCAAN5AAM2BA", "last_media_unique_id": "AQADGeoxG_DDUEp-", "last_income_media_group_id": null}
+*2
+$3
+DEL
+$49
+fsm:300970915:300970915:aiogd:context:A8BH11:data
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVbkZgzXtdRkGHJpufP8Pzu4oAAhnqMRvww1BKNWDlSq7dGQYBAAMCAAN5AAM2BA", "last_media_unique_id": "AQADGeoxG_DDUEp-", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:NR8bca:data
+$192
+{"_intent_id": "NR8bca", "_stack_id": "", "state": "HelpMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$281
+{"_id": "", "intents": ["QulP08", "NR8bca"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oCAAFcDMInN4XbpEPSytFFo94lAALi6jEbnZdQSsQhw1p2cgnMAQADAgADeQADNgQ", "last_media_unique_id": "AQAD4uoxG52XUEp-", "last_income_media_group_id": null}
+*2
+$3
+DEL
+$49
+fsm:300970915:300970915:aiogd:context:NR8bca:data
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$271
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oCAAFcDMInN4XbpEPSytFFo94lAALi6jEbnZdQSsQhw1p2cgnMAQADAgADeQADNgQ", "last_media_unique_id": "AQAD4uoxG52XUEp-", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:9ktgw4:data
+$194
+{"_intent_id": "9ktgw4", "_stack_id": "", "state": "LessonMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$280
+{"_id": "", "intents": ["QulP08", "9ktgw4"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVVdLTCgaHDVFCBCCxvA7UtU8AAhDqMRv0eVBKr46DeGZAp0MBAAMCAAN5AAM2BA", "last_media_unique_id": "AQADEOoxG_R5UEp-", "last_income_media_group_id": null}
+*2
+$3
+DEL
+$49
+fsm:300970915:300970915:aiogd:context:9ktgw4:data
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVVdLTCgaHDVFCBCCxvA7UtU8AAhDqMRv0eVBKr46DeGZAp0MBAAMCAAN5AAM2BA", "last_media_unique_id": "AQADEOoxG_R5UEp-", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["QulP08"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+$192
+{"_intent_id": "QulP08", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:X8BH11:data
+$199
+{"_intent_id": "X8BH11", "_stack_id": "", "state": "TraumaPointWork:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$280
+{"_id": "", "intents": ["QulP08", "X8BH11"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVaoIDXjmbB9GY6KINvqJp2jgAAhjqMRvww1BK3zAn1x0BSE8BAAMCAAN5AAM2BA", "last_media_unique_id": "AQADGOoxG_DDUEp-", "last_income_media_group_id": null}
+*2
+$3
+DEL
+$49
+fsm:300970915:300970915:aiogd:context:X8BH11:data
+*2
+$3
+DEL
+$49
+fsm:300970915:300970915:aiogd:context:QulP08:data
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$262
+{"_id": "", "intents": [], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMtZ8oVaoIDXjmbB9GY6KINvqJp2jgAAhjqMRvww1BK3zAn1x0BSE8BAAMCAAN5AAM2BA", "last_media_unique_id": "AQADGOoxG_DDUEp-", "last_income_media_group_id": null}
+*3
+$3
+SET
+$49
+fsm:300970915:300970915:aiogd:context:eZujn6:data
+$192
+{"_intent_id": "eZujn6", "_stack_id": "", "state": "MainMenu:main_menu", "start_data": null, "dialog_data": {}, "widget_data": {}, "access_settings": {"user_ids": [300970915], "custom": null}}
+*3
+$3
+SET
+$41
+fsm:300970915:300970915:aiogd:stack::data
+$270
+{"_id": "", "intents": ["eZujn6"], "last_message_id": 77, "last_reply_keyboard": false, "last_media_id": "AgACAgIAAxkDAAMYZ8oB_KP9INst95tUpOqUKj_yxpgAAuHqMRudl1BKRW5lqrg37jkBAAMCAAN3AAM2BA", "last_media_unique_id": "AQAD4eoxG52XUEp8", "last_income_media_group_id": null}
