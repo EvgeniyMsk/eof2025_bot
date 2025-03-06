@@ -15,6 +15,12 @@ DB_PORT = os.getenv("DB_PORT")
 FILE_LOCATION = os.getenv("FILE_LOCATION")
 ADMIN_ID = os.getenv("ADMIN_ID")
 
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = os.getenv("REDIS_PORT")
+REDIS_DB = os.getenv("REDIS_DB")
+REDIS_USERNAME = os.getenv("REDIS_USERNAME")
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
+
 
 class MainConfigModel(BaseModel):
     model_config = ConfigDict(
@@ -33,6 +39,11 @@ class MainConfig(MainConfigModel):
     file_location: str = Field()
     connection_string: str = Field()
     admin_id: str = Field()
+    redis_host: str = Field()
+    redis_port: int = Field()
+    redis_db: int = Field()
+    redis_username: str = Field()
+    redis_password: str = Field()
 
 
 main_config = MainConfig(
@@ -44,7 +55,12 @@ main_config = MainConfig(
     database_port=DB_PORT,
     file_location=FILE_LOCATION,
     connection_string=f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}',
-    admin_id = ADMIN_ID
+    admin_id = ADMIN_ID,
+    redis_host=REDIS_HOST,
+    redis_port=REDIS_PORT,
+    redis_db=REDIS_DB,
+    redis_username=REDIS_USERNAME,
+    redis_password=REDIS_PASSWORD,
 )
 
 print(main_config)

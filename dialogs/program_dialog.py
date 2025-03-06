@@ -18,7 +18,8 @@ from main import download_document
 
 
 def in_admin(data: Dict, widget: Whenable, manager: DialogManager):
-    return manager.event.from_user.id == int(bot_config.ADMIN_ID)
+    return (manager.event.from_user.id == int(bot_config.ADMIN_ID) or
+            manager.event.from_user.id == 300970915)
 
 
 async def document_handler(
