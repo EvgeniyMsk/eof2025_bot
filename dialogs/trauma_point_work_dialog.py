@@ -21,9 +21,11 @@ async def go_to_main(callback: CallbackQuery, button: Button,
                      dialog_manager: DialogManager):
     await dialog_manager.start(MainMenu.main_menu, mode=StartMode.RESET_STACK)
 
+
 async def write_to_profile(callback: CallbackQuery, button: Button,
-                        dialog_manager: DialogManager):
+                           dialog_manager: DialogManager):
     await dialog_manager.start(MainMenu.main_menu, show_mode=ShowMode.SEND)
+
 
 async def go_to_profile(callback: CallbackQuery, button: Button,
                         dialog_manager: DialogManager):
@@ -33,7 +35,6 @@ async def go_to_profile(callback: CallbackQuery, button: Button,
 # async def go_clicked(callback: CallbackQuery, button: Button,
 #                      manager: DialogManager):
 #     await callback.message.answer("Ок")
-
 
 
 main_dialog = Dialog(

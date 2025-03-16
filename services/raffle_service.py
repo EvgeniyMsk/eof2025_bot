@@ -1,9 +1,10 @@
+from typing import List
+
 from aiogram.types import CallbackQuery
 from aiogram_dialog import DialogManager
-from sqlalchemy.orm import Session
 
-from db.database import engine, session_factory
-from db.models import RaffleUser
+from db.database import session_factory
+from db.models import RaffleUser, Status
 
 
 def is_exists(ticket_number: int) -> bool:
@@ -12,6 +13,33 @@ def is_exists(ticket_number: int) -> bool:
                        .filter(RaffleUser.ticket_number == ticket_number).count())
         session.close()
         return count_users > 0
+
+
+def set_raffle_active():
+    with session_factory() as session:
+        session.query(Status).filter(Status.type_of_status == 'raffle').update({Status.value: 1})
+        session.commit()
+
+
+def set_raffle_inactive():
+    with session_factory() as session:
+        session.query(Status).filter(Status.type_of_status == 'raffle').update({Status.value: 0})
+        session.commit()
+
+
+def is_raffle_active() -> int:
+    with session_factory() as session:
+        result = (session.query(Status)
+                  .filter(Status.type_of_status == 'raffle')
+                  .filter(Status.value == 1).count())
+        return result
+
+
+def get_all_users() -> List[RaffleUser]:
+    with session_factory() as session:
+        result = (session.query(RaffleUser)).all()
+        session.close()
+    return result
 
 
 def reg_raffle_user(raffle_user: RaffleUser) -> None:

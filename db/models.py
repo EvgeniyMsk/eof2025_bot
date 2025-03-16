@@ -29,6 +29,21 @@ eof_users_non_professional_interests = Table(
 )
 
 
+class BotUser(Base):
+    __tablename__ = "eof_bot_users"
+    metadata = metadata
+    id: Mapped[int] = mapped_column(primary_key=True)
+    telegram_id: Mapped[int] = mapped_column(Integer, default=0, unique=True)
+
+
+class Status(Base):
+    __tablename__ = "eof_bot_statuses"
+    metadata = metadata
+    id: Mapped[int] = mapped_column(primary_key=True)
+    type_of_status: Mapped[str] = mapped_column(String, default='', unique=True)
+    value: Mapped[int] = mapped_column(Integer, default=0)
+
+
 class EofUser(Base):
     __tablename__ = "eof_users"
     metadata = metadata
@@ -121,10 +136,20 @@ def create_tables():
     metadata.create_all(engine)
 
     with session_factory() as session:
+        session.add(Status(type_of_status='raffle', value=0))
         for i in professional_interests:
             session.add(ProfessionalInterest(name=i))
         for i in non_professional_interests:
             session.add(NonProfessionalInterest(name=i))
+        session.commit()
+
+
+def add_new_user(tg_id):
+    # Добавление нового пользователя при нажатии /start #
+    with session_factory() as session:
+        tg_user = session.query(BotUser).filter_by(telegram_id=tg_id).first()
+        if tg_user is None:
+            session.add(BotUser(telegram_id=tg_id))
         session.commit()
 
 
@@ -153,6 +178,7 @@ def create_user(tg_id, lastname, firstname, email, institute, note, professional
         )
         session.add(user1)
         session.commit()
+
 
 # create_user(tg_id=100,
 #             lastname='Петров',

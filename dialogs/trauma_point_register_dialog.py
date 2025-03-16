@@ -12,8 +12,10 @@ from aiogram_dialog.widgets.text import Const, Jinja
 from services.trauma_point_service import register_eof_user
 from states import TraumaPointRegister, TraumaPointWork, MainMenu
 
+
 def get_pre_result() -> str:
     return 'test'
+
 
 async def check_changed(event: ChatEvent, checkbox: ManagedCheckbox,
                         manager: DialogManager):
