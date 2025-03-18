@@ -1,11 +1,13 @@
+import os
 from typing import Dict, Any
 
-from aiogram.enums import ParseMode
+from aiogram.enums import ParseMode, ContentType
 from aiogram.types import CallbackQuery
 from aiogram_dialog import Window, Dialog, DialogManager, Data, StartMode
 from aiogram_dialog.widgets.common import Whenable
 from aiogram_dialog.widgets.input import TextInput
 from aiogram_dialog.widgets.kbd import Cancel, Next, Back, Button
+from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const, Jinja, Multi
 
 from services import raffle_service
@@ -51,12 +53,22 @@ main_dialog = Dialog(
         parse_mode=ParseMode.HTML,
     ),
     Window(
+        StaticMedia(
+            path=os.path.abspath(os.curdir) + '/files/raffle/eof_raffle_pic.jpg',
+            type=ContentType.PHOTO,
+        ),
         Multi(
-            Const(f'Введите номер билета'),
+            Jinja(
+                f'Введите номер билета.\n\n'
+                '<b>Номер билета Вы можете посмотреть в личном кабинете\n '
+                'на сайте https://2025.eoforum.ru  в разделе «Мои билеты»</b>'
+            ),
+            #Const(f'Введите номер билета'),
         ),
         TextInput(id="ticket_number", on_success=Next()),
         Back(Const("Назад")),
         state=RaffleMenu.input_number,
+        parse_mode=ParseMode.HTML,
     ),
     Window(
         Multi(
@@ -64,9 +76,11 @@ main_dialog = Dialog(
             when=is_contains
         ),
         Multi(
-            Jinja(f'Поздравляем! Вы участвуете в розыгрыше автомобиля <b>Москвич 3</b>.\r\n'
-                  f'Розыгрыш состоится <b>21 июня в 12:00 в главном зале.</b>\r\n'
-                  f'Для получения приза <b>обязательно</b> личное присутствие.'),
+            Jinja(f'Поздравляем! Вы участвуете в розыгрыше автомобиля <b>Москвич</b>🚘.\r\n'
+                  f'Розыгрыш состоится <b>21 июня в 12:45 в зоне Города Мастеров</b> на\r\n'
+                  f'-1 этаже ЦВЗ «Манеж».\r\n'
+                  f'🚨<b>Для получения приза обязательно личное'
+                  f'присутствие на розыгрыше!</b>\n\n'),
             when=is_not_contains
         ),
         Button(Const("На главную"), id='end_dialog', on_click=close_subdialog),

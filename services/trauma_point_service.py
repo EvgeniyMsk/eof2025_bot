@@ -167,10 +167,12 @@ def is_users_not_contains(data: Dict, widget: Whenable, manager: DialogManager):
 def user_registered(data: Dict, widget: Whenable, manager: DialogManager):
     with session_factory() as session:
         person = session.query(EofUser).where(EofUser.telegram_id == manager.event.from_user.id)
+        session.close()
     return person.count() > 0
 
 
 def user_not_registered(data: Dict, widget: Whenable, manager: DialogManager):
     with session_factory() as session:
         person = session.query(EofUser).where(EofUser.telegram_id == manager.event.from_user.id)
+        session.close()
     return person.count() <= 0

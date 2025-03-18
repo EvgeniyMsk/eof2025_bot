@@ -1,18 +1,13 @@
 import os
 
-from aiogram import types
 from aiogram.enums import ParseMode, ContentType
-from aiogram.types import CallbackQuery, InlineKeyboardButton
-from aiogram.types import Chat, User
-from aiogram.utils.keyboard import InlineKeyboardBuilder, KeyboardBuilder, ButtonType
+from aiogram.types import CallbackQuery
 from aiogram_dialog import Window, Dialog, DialogManager, StartMode, ShowMode
-from aiogram_dialog.manager.bg_manager import BgManager
 from aiogram_dialog.widgets.kbd import Button, StubScroll, Row, FirstPage, \
-    PrevPage, NextPage, LastPage, Url, Column
+    PrevPage, NextPage, LastPage, Url
 from aiogram_dialog.widgets.media import StaticMedia
 from aiogram_dialog.widgets.text import Const, Format
 
-import bot_config
 from services import trauma_point_service
 from states import TraumaPointWork, MainMenu, TraumaPointRegister
 
@@ -57,20 +52,20 @@ main_dialog = Dialog(
                "<b>О себе:</b> {note}\r\n",
                when=trauma_point_service.is_users_contains),
         StubScroll(id="list_scroll", pages="pages"),
-        # Row(
-        #     Url(
-        #         Format("Написать"),
-        #         Format("tg://openmessage?user_id={telegram_id}"),
-        #     ),
-        #     when=trauma_point_service.is_users_contains
-        # ),
         Row(
             Url(
-                Format("Написать пользователю"),
-                Format("tg://user?id={telegram_id}"),
+                Format("Написать"),
+                Format("tg://openmessage?user_id={telegram_id}"),
             ),
             when=trauma_point_service.is_users_contains
         ),
+        # Row(
+        #     Url(
+        #         Format("Написать пользователю"),
+        #         Format("tg://user?id={telegram_id}"),
+        #     ),
+        #     when=trauma_point_service.is_users_contains
+        # ),
         Row(
             FirstPage(
                 scroll="list_scroll", text=Format("Начало"),
