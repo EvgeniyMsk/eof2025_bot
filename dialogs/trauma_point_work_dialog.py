@@ -56,20 +56,20 @@ main_dialog = Dialog(
                "<b>О себе:</b> {note}\r\n",
                when=trauma_point_service.is_users_contains),
         StubScroll(id="list_scroll", pages="pages"),
-        # Row(
-        #     Url(
-        #         Format("Написать"),
-        #         Format("tg://openmessage?user_id={telegram_id}"),
-        #     ),
-        #     when=trauma_point_service.is_users_contains
-        # ),
         Row(
             Url(
-                Format("Написать пользователю"),
-                Format("tg://user?id={telegram_id}"),
+                Format("Написать"),
+                Format("tg://openmessage?user_id={telegram_id}"),
             ),
             when=trauma_point_service.is_users_contains
         ),
+        # Row(
+        #     Url(
+        #         Format("Написать пользователю"),
+        #         Format("tg://user?id={telegram_id}"),
+        #     ),
+        #     when=trauma_point_service.is_users_contains
+        # ),
         Row(
             FirstPage(
                 scroll="list_scroll", text=Format("Начало"),

@@ -59,7 +59,7 @@ main_dialog = Dialog(
         # Start(Const("🎲Участие в розыгрыше"), id="raffle", state=RaffleMenu.main_menu_input_lastname),
         #Start(Const("🤳Квест по выставке"), id="quest", state=QuestMenu.main_menu),
         Start(Const("✍️Подать доклад"), id="stand_presentation", state=LessonMenu.main_menu),
-        Start(Const("🔖Техническая поддержка"), id="help", state=HelpMenu.main_menu),
+        Start(Const("🔖Горячая линия"), id="help", state=HelpMenu.main_menu),
         state=MainMenu.main_menu,
         parse_mode=ParseMode.HTML,
     ),

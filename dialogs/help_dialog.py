@@ -15,8 +15,9 @@ main_dialog = Dialog(
             type=ContentType.PHOTO,
         ),
         Jinja(
-            f'При возникновении вопросов и предложений\n'
-            f'обращаться в Telegram @kharlanova_da\n'
+            f'При возникновении вопросов и \n'
+            f'предложений обращаться по телефону\n'
+            f'горячей линии ЕОФ +79647747202\n'
         ),
         Cancel(Const('Назад')),
         state=HelpMenu.main_menu,
